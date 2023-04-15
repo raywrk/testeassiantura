@@ -18,6 +18,7 @@ import { TokenService } from './shared/services/token.service';
 import { CadastroGanhadorComponent } from './view/cadastro-ganhador/cadastro-ganhador.component';
 import { AssinaturaComponent } from './assinatura.component';
 import { EstoqueSaldoComponent } from './view/estoque-saldo/estoque-saldo.component';
+import { AuthGuard } from './shared/guard/auth.guard';
 const components = [
   AppComponent,
   LoginComponent,
@@ -46,6 +47,7 @@ const components = [
     NgxMaskModule.forRoot()
   ],
   providers: [
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenService,
