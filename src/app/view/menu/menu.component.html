@@ -1,0 +1,23 @@
+<div class="container logout">
+  <button mat-button color="primary" (click)="onLogout()">
+    Sair
+  </button>
+</div>
+<div class="container">
+  <mat-tab-group mat-align-tabs="center">
+
+    <mat-tab label="Consulta CPF">
+      <app-consulta-cpf></app-consulta-cpf>
+    </mat-tab>
+
+    <mat-tab label="Cadastro ganhador">
+      <app-cadastro-ganhador></app-cadastro-ganhador>
+    </mat-tab>
+
+    <mat-tab label="Estoque e Saldo">
+      <app-estoque-saldo></app-estoque-saldo>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>

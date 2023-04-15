@@ -1,0 +1,55 @@
+.container {
+  margin-top: 20px;
+  overflow: hidden !important;
+}
+.form-control:focus {
+  border-color: #e89a27;
+  // box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+  box-shadow: none;
+}
+
+.form-select:focus {
+  border-color: #e89a27;
+  // box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+  box-shadow: none;
+}
+
+.buttonsForm {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  .btn-salvar {
+    background: #fec600;
+    font-weight: 600;
+  }
+  .btn-limpar {
+    background: #ee4e23;
+    font-weight: 600;
+    color: #fff;
+  }
+  .btn-assinatura {
+    background: #E9E8E8;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .btn-salvar,
+  .btn-limpar,
+  .btn-assinatura {
+    border-radius: 8px;
+    height: 50px;
+    width: 200px;
+    border: none;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+canvas {
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+}

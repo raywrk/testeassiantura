@@ -1,0 +1,73 @@
+<div class="container">
+
+  <form action=""  class="row g-3" [formGroup]="formGanhador">
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="NOME COMPLETO" formControlName="nome">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control"  placeholder="CPF" formControlName="cpf" mask="000.000.000-00">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="E-MAIL" formControlName="email">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="TELEFONE" formControlName="telefone" mask="(00) 00000-0000">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="CEP" formControlName="cep" (blur)="consultarCEP(formGanhador.get('cep').value)">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="BAIRRO" formControlName="bairro">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="LOGRADOURO" formControlName="logradouro">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="CIDADE" formControlName="cidade">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="UF" formControlName="uf">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="NUMERO" formControlName="numero">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="COMPLEMENTO" formControlName="complemento">
+    </div>
+
+    <div class="col-md-6">
+      <select class="form-select" id="validationCustom04" required formControlName="produto">
+        <option selected disabled value="">Escolha o produto...</option>
+        <option value="Copo">Copo</option>
+        <option value="Bucket">Bucket</option>
+        <option value="Voucher">Voucher</option>
+      </select>
+    </div>
+
+    <canvas #sigPad width="600" height="250" (mousedown)="onMouseDown($event)"
+    (mousemove)="onMouseMove($event)" (touchstart)="onTouchStart($event)"
+    (touchmove)="onTouchMove($event)" (touchend)="onTouchEnd($event)"></canvas>
+    <br/>
+
+    <div class="buttonsForm">
+      <button class="btn-salvar"  (click)="onSubmit()">Salvar</button>
+      <button class="btn-limpar" (click)="onLimpar()">Limpar Formulário</button>
+      <button class="btn-assinatura" (click)="clear()">Limpar Assinatura</button>
+    </div>
+
+  </form>
+
+
+
+</div>

@@ -1,31 +1,40 @@
-import { Component, Input, ViewChild, OnInit, HostListener } from '@angular/core';
+import { Component, Input, ViewChild, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
 import { TesteService } from './teste.service';
 
 @Component({
   selector: 'hello',
-  template: ` <br/><br/><br/><br/>
-  <canvas #sigPad width="300" height="150" (mousedown)="onMouseDown($event)"
+  template: ` <br/>
+  <canvas #sigPad width="600" height="250" (mousedown)="onMouseDown($event)"
   (mousemove)="onMouseMove($event)" (touchstart)="onTouchStart($event)"
   (touchmove)="onTouchMove($event)" (touchend)="onTouchEnd($event)"></canvas>
   <br/>
-  <button (click)="clear()">clear</button>
-  <button (click)="save()">save</button>
+  <button (click)="clear()">Limpar </button>
+  <button (click)="save()">Salvar </button>
   <br/>
-  <img [src]="img">
-  <br/>
-  <span>{{img}}</span>`,
+  `,
   styles: [`
   canvas {
-    border: 1px solid #000;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
   }
   span {
     width: 300px;
   }
+  button{
+    width: 150px;
+    height: 50px;
+    background: #E9E8E8;
+    border-radius: 10px;
+    border: none;
+    color: black;
+    font-weight: 600;
+  }
   `]
 })
-export class HelloComponent {
+export class AssinaturaComponent {
 
-  @Input() name: string;
+  @Output() imageSalva = new EventEmitter<string>();
+
   @ViewChild('sigPad') sigPad;
   sigPadElement;
   context;
@@ -39,7 +48,7 @@ export class HelloComponent {
   ngAfterViewInit() {
     this.sigPadElement = this.sigPad.nativeElement;
     this.context = this.sigPadElement.getContext('2d');
-    this.context.strokeStyle = '#3742fa';
+    this.context.strokeStyle = '#000';
   }
 
   @HostListener('document:mouseup', ['$event'])
@@ -93,8 +102,11 @@ export class HelloComponent {
 
   save() {
     this.img = this.sigPadElement.toDataURL("image/png");
-    console.log(this.img);
-    this.testeService.enviarArquivo(this.img).subscribe();
+    this.testeService.enviarArquivo(this.img).subscribe((response) => {
+      const id = response.data.id;
+      console.log(id);
+      this.imageSalva.emit(id); // emitir o ID da imagem
+    });
   }
 
 }

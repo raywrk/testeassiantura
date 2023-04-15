@@ -1,0 +1,24 @@
+
+.logout{
+  display: flex;
+  flex-direction: row-reverse;
+
+  button{
+    color: #000;
+    font-weight: 700;
+    font-size: 16px;
+  }
+}
+mat-tab{
+  height: 100% !important;
+}
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  color: #E89A27 !important;
+  font-weight: 700 !important;
+}
+
+ /* ink bar */
+  ::ng-deep .mat-ink-bar {
+  background-color: #E89A27 !important;
+  }

@@ -1,0 +1,17 @@
+<div class="navbar">
+  <div class="container">
+    <img src="/assets/img/logo-ze.png" alt="logo-ze">
+    <h2>CABINE ZÉ COMPENSA</h2>
+    <img src="/assets/img/logo-estalo.png" alt="logo-estalo">
+  </div>
+</div>
+
+
+<div class="container login">
+  <h2>LOGIN</h2>
+  <form [formGroup]="loginForm">
+    <input type="text" placeholder="Digite seu usuário" formControlName="email">
+    <input type="password" placeholder="Digite sua senha" formControlName="senha">
+    <button (click)="onSubmit()">Entrar</button>
+  </form>
+</div>

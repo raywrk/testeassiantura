@@ -1,0 +1,22 @@
+<div>
+  <input type="text" mask="000.000.000-99" [(ngModel)]="cpf" placeholder="000.000.000-00">
+  <button mat-button color="primary" (click)="onSubmit(cpf)">
+    <mat-icon>search</mat-icon>
+  </button>
+</div>
+
+<div *ngIf="showNotificacao" class="notificacao">
+
+  <div  class="mensagem" *ngIf="showMensagem == true else notificacaoNegativa">
+    <h2>Cliente elegível para participar da promoção</h2>
+    <img src="/assets/img/like.svg" alt="">
+  </div>
+
+  <ng-template #notificacaoNegativa>
+    <div  class="mensagem">
+      <h2>Cliente já está participando da promoção</h2>
+      <img src="/assets/img/deslike.svg" alt="">
+    </div>
+  </ng-template>
+
+</div>
