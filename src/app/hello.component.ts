@@ -4,8 +4,9 @@ import { TesteService } from './teste.service';
 @Component({
   selector: 'hello',
   template: ` <br/><br/><br/><br/>
-  <canvas #sigPad width="300" height="150" (touchstart)="onTouchStart($event)"
-  (mousemove)="onTouchMove($event)"></canvas>
+  <canvas #sigPad width="300" height="150" (mousedown)="onMouseDown($event)"
+  (mousemove)="onMouseMove($event)" (touchstart)="onTouchStart($event)"
+  (touchmove)="onTouchMove($event)" (touchend)="onTouchEnd($event)"></canvas>
   <br/>
   <button (click)="clear()">clear</button>
   <button (click)="save()">save</button>
@@ -42,28 +43,32 @@ export class HelloComponent {
   }
 
   @HostListener('document:mouseup', ['$event'])
-  // onMouseUp(e) {
-  //   this.isDrawing = false;
-  // }
+  onMouseUp(e) {
+    this.isDrawing = false;
+  }
 
-  // onMouseDown(e) {
-  //   this.isDrawing = true;
-  //   const coords = this.relativeCoords(e);
-  //   this.context.moveTo(coords.x, coords.y);
-  // }
+  onTouchEnd(e) {
+    this.isDrawing = false;
+  }
 
-  // onMouseMove(e) {
-  //   if (this.isDrawing) {
-  //     const coords = this.relativeCoords(e);
-  //     this.context.lineTo(coords.x, coords.y);
-  //     this.context.stroke();
-  //   }
-  // }
+  onMouseDown(e) {
+    this.isDrawing = true;
+    const coords = this.relativeCoords(e);
+    this.context.moveTo(coords.x, coords.y);
+  }
 
   onTouchStart(e) {
     this.isDrawing = true;
     const coords = this.relativeCoords(e.touches[0]);
     this.context.moveTo(coords.x, coords.y);
+  }
+
+  onMouseMove(e) {
+    if (this.isDrawing) {
+      const coords = this.relativeCoords(e);
+      this.context.lineTo(coords.x, coords.y);
+      this.context.stroke();
+    }
   }
 
   onTouchMove(e) {
@@ -74,23 +79,12 @@ export class HelloComponent {
     }
   }
 
-  onTouchEnd(e) {
-    this.isDrawing = false;
-  }
-
   private relativeCoords(event) {
     const bounds = event.target.getBoundingClientRect();
-    const x = event.clientX - bounds.left || event.touches[0].clientX - bounds.left;
-    const y = event.clientY - bounds.top || event.touches[0].clientY - bounds.top;
+    const x = event.clientX - bounds.left;
+    const y = event.clientY - bounds.top;
     return { x: x, y: y };
   }
-
-  // private relativeCoords(event) {
-  //   const bounds = event.target.getBoundingClientRect();
-  //   const x = event.clientX - bounds.left;
-  //   const y = event.clientY - bounds.top;
-  //   return { x: x, y: y };
-  // }
 
   clear() {
     this.context.clearRect(0, 0, this.sigPadElement.width, this.sigPadElement.height);
