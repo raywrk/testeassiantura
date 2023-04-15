@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GanhadorService } from 'src/app/shared/services/ganhador.service';
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class CadastroGanhadorComponent implements OnInit {
 
-  name = 'hello'
+  @Output() novoRegistro = new EventEmitter<void>();
   @ViewChild('sigPad') sigPad;
   sigPadElement;
   context;
@@ -112,6 +112,7 @@ export class CadastroGanhadorComponent implements OnInit {
   }
 
 
+
   consultarCEP(cep: string) {
     this.http.get(`https://viacep.com.br/ws/${cep}/json/`).subscribe((endereco: any) => {
       this.formGanhador.patchValue({
@@ -183,8 +184,9 @@ export class CadastroGanhadorComponent implements OnInit {
                   icon: 'success'
                 }
               ).then(() => {
-                this.ngAfterViewInit()
-                this.onLimpar()
+                this.ngAfterViewInit();
+                this.onLimpar();
+                this.novoRegistro.emit();
               } )
             },
             error: (error) => {

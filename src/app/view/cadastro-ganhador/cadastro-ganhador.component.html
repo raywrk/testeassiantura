@@ -61,8 +61,7 @@
     <br/>
 
     <div class="buttonsForm">
-      <button class="btn-salvar"  (click)="onSubmit()">Salvar</button>
-      <!-- <button class="btn-limpar" (click)="onLimpar()">Limpar Formulário</button> -->
+      <button class="btn-salvar"  (click)="onSubmit(); novoRegistro.emit()">Salvar</button>
       <button class="btn-assinatura" (click)="clear()">Limpar Assinatura</button>
     </div>
 
