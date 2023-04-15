@@ -125,25 +125,29 @@ export class CadastroGanhadorComponent implements OnInit {
 
   onLimpar() {
 
-    Swal.fire({
-      title: 'Tem certeza que deseja limpar o formulário ?',
-      text: "Você não poderá reverter isso!",
-      icon: 'warning',
-      position: 'bottom',
-      showCancelButton: true,
-      heightAuto: false,
-      confirmButtonColor: '#39bd0e',
-      cancelButtonText: 'Cancelar',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sim, limpar!'
-    }).then((result) => {
-      if (result.isConfirmed) {
+    // Swal.fire({
+    //   title: 'Tem certeza que deseja limpar o formulário ?',
+    //   text: "Você não poderá reverter isso!",
+    //   icon: 'warning',
+    //   position: 'bottom',
+    //   showCancelButton: true,
+    //   heightAuto: false,
+    //   confirmButtonColor: '#39bd0e',
+    //   cancelButtonText: 'Cancelar',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Sim, limpar!'
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
 
-        this.formGanhador.reset({ produto: '' });
-        this.clear();
+    //     this.formGanhador.reset({ produto: '' });
+    //     this.clear();
 
-      }
-    })
+    //   }
+    // })
+
+    this.formGanhador.reset({ produto: '' });
+    this.clear();
+
   }
 
 
@@ -178,7 +182,10 @@ export class CadastroGanhadorComponent implements OnInit {
                   heightAuto: false,
                   icon: 'success'
                 }
-              ).then(() => this.ngAfterViewInit())
+              ).then(() => {
+                this.ngAfterViewInit()
+                this.onLimpar()
+              } )
             },
             error: (error) => {
               if (error.status === 401) {
