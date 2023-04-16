@@ -83,6 +83,7 @@ export class CadastroGanhadorComponent implements OnInit {
   }
 
   onTouchMove(e) {
+    e.preventDefault();
     if (this.isDrawing) {
       const coords = this.relativeCoords(e.touches[0]);
       this.context.lineTo(coords.x, coords.y);
